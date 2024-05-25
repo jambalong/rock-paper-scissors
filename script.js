@@ -44,7 +44,16 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+let humanSelection = '';
+let computerSelection = '';
 
-playRound(humanSelection, computerSelection);
+function playGame() {
+  for (let round = 0; round < 5; round++ ) {
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+  }
+}
+
+playGame();
