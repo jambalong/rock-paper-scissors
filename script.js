@@ -9,3 +9,7 @@ function getComputerChoice() {
   }
 }
 
+function getHumanChoice() {
+  let humanChoice = prompt('What is your move? (rock, paper, scissors)');
+  return humanChoice;
+}
