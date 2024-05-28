@@ -27,34 +27,47 @@ function playRound(humanChoice, computerChoice) {
 
   // Outputs the round winner and increments score
   if (humanChoice == computerChoice) {
-    console.log('This round is a draw!');
+    result.textContent = 'This round is a draw!';
+    scores.textContent = `Human ${humanScore} : ${computerScore} Computer`;
   } else if (humanChoice == 'rock' && computerChoice == 'paper') {
-    console.log('You lose! Paper beats Rock');
-    computerScore++
+    result.textContent = 'You lose! Paper beats Rock'
+    computerScore++;
+    scores.textContent = `Human ${humanScore} : ${computerScore} Computer`;
   } else if (humanChoice == 'rock' && computerChoice == 'scissors') {
-    console.log('You win! Rock beats Scissors');
+    result.textContent = 'You win! Rock beats Scissors'
     humanScore++;
+    scores.textContent = `Human ${humanScore} : ${computerScore} Computer`;
   } else if (humanChoice == 'paper' && computerChoice == 'scissors') {
-    console.log('You lose! Scissors beats Paper');
+    result.textContent = 'You lose! Scissors beats Paper'
     computerScore++;
+    scores.textContent = `Human ${humanScore} : ${computerScore} Computer`;
   } else if (humanChoice == 'paper' && computerChoice == 'rock') {
-    console.log('You win! Paper beats Rock');
+    result.textContent = 'You win! Paper beats Rock'
     humanScore++;
+    scores.textContent = `Human ${humanScore} : ${computerScore} Computer`;
   } else if (humanChoice == 'scissors' && computerChoice == 'rock') {
-    console.log('You lose! Rock beats Scissors');
+    result.textContent = 'You lose! Rock beats Scissors'
     computerScore++;
+    scores.textContent = `Human ${humanScore} : ${computerScore} Computer`;
   } else if (humanChoice == 'scissors' && computerChoice == 'paper') {
-    console.log('You win! Scissors beats Paper');
+    result.textContent = 'You win! Scissors beats Paper';
     humanScore++;
+    scores.textContent = `Human ${humanScore} : ${computerScore} Computer`;
+  }
+
+  if (humanScore == 5) {
+    scores.textContent = 'Congratulations! Human wins.';
+  } else if (computerScore == 5) {
+    scores.textContent = 'Better luck next time! Computer wins.'
   }
 }
+
 
 // Initialize humanSelection and computerSelection to empty string
 let humanSelection = '';
 let computerSelection = '';
 
 function playGame() {
-
   // Loop 5 rounds by calling playRound 5 times
   for (let round = 0; round < 5; round++ ) {
     humanSelection = getHumanChoice();
@@ -64,4 +77,20 @@ function playGame() {
   }
 }
 
-playGame();
+// Add buttons for moves and event listener to call playRound()
+let btnRock = document.querySelector(".rock");
+let btnPaper = document.querySelector(".paper");
+let btnScissors = document.querySelector(".scissors");
+
+let result = document.querySelector(".result");
+let scores = document.querySelector(".scores")
+
+btnRock.addEventListener('click', () => {
+  playRound('rock', getComputerChoice());
+})
+btnPaper.addEventListener('click', () => {
+  playRound('paper', getComputerChoice());
+})
+btnScissors.addEventListener('click', () => {
+  playRound('scissors', getComputerChoice());
+})
